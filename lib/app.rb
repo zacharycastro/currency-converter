@@ -1,5 +1,4 @@
-require "./requests.rb"
+require "./convert.rb"
+puts convertCrypto("bitcoin", "eth")
 
-req = sendRequest(nil, nil)
 
-puts req

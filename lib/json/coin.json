@@ -1,0 +1,6 @@
+{
+    "cryptoCurrency": {
+        "bitcoin": "btc",
+        "ethereum": "eth"
+    }
+}
