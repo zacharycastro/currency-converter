@@ -6,9 +6,13 @@ def convertCrypto(coinOne, coinTwo)
     jsonData = readJson()
     jsonData["cryptoCurrency"].each do |keyOne, valueOne|
         jsonData["cryptoCurrency"].each do |keyTwo, valueTwo|
-            if (coinOne == keyOne or valueOne) and (coinTwo == keyTwo or valueTwo)
+            if coinOne == keyOne or coinOne == valueOne
                 apiData = formatPrice(sendRequest(keyOne)) 
-                return apiData["Price"][valueTwo]
+                if coinTwo == valueTwo or coinTwo == keyTwo
+                    return "#{apiData[:Price][valueTwo]} " + "#{valueTwo}"
+                else
+                    next
+                end
             else
                 return "error"
             end
