@@ -2,18 +2,34 @@ require "./jsonReader.rb"
 require "./requests.rb"
 require "./format.rb"
 
-def convertCrypto(coinOne, coinTwo)
+def convert(currencyOne, currencyTwo)
     jsonData = readJson()
-    coinOneData = nil
-    coinTwoData = nil
-    jsonData["cryptoCurrency"].each do |key, value|
-        if coinOne == key or coinOne == value
-            coinOneData = formatPrice(sendRequest(key))[:Price]
-        elsif coinTwo == key or coinTwo == value
-            coinTwoData = formatPrice(sendRequest(key))[:Price]
-        else
-            next
+    currencyOneData = nil
+    currencyOneType = nil
+    currencyTwoData = nil
+    currencyTwoType = nil
+
+    jsonData.each do |keyOne, valueOne|
+        jsonData[keyOne].each do |keyTwo, valueTwo|
+            if keyOne == "cryptoCurrency"
+                if currencyOne == keyTwo
+                    currencyOneData, currencyOneType = sendRequest(keyTwo)
+                    currencyOneData = formatPrice(currencyOneData, currencyOneType)[:Price]
+                elsif currencyTwo == keyTwo
+                    currencyTwoData, currencyTwoType = sendRequest(keyTwo)
+                    currencyTwoData = formatPrice(currencyTwoData, currencyTwoType)[:Price]                     
+                end
+
+            elsif keyOne == "fiat"
+                if currencyOne == keyTwo
+                    currencyOneData, currencyOneType = sendRequest(keyTwo)
+                    currencyOneData = formatPrice(currencyOneData, currencyOneType)[:Price]
+                elsif currencyTwo == keyTwo
+                    currencyTwoData, currencyTwoType = sendRequest(keyTwo)
+                    currencyTwoData = formatPrice(currencyTwoData, currencyTwoType)[:Price]
+                end
+            end
         end
     end
-    return coinOneData/coinTwoData
+    return "#{'%.2f' % (currencyOneData/currencyTwoData)}"
 end

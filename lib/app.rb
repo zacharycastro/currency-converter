@@ -1,2 +1,2 @@
 require "./convert.rb"
-puts convertCrypto("bitcoin", "ethereum")
+puts convert("bitcoin", "euro")

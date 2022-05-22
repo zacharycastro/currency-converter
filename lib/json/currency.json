@@ -3,5 +3,10 @@
         "bitcoin": "btc",
         "ethereum": "eth",
         "dogecoin": "doge"
+    },
+
+    "fiat": {
+        "US dollar": "usd",
+        "euro": "eur"
     }
 }
