@@ -2,11 +2,15 @@
     "cryptoCurrency": {
         "bitcoin": "btc",
         "ethereum": "eth",
-        "dogecoin": "doge"
+        "dogecoin": "doge",
+        "monero": "xmr",
+        "zcash": "zec",
+        "iota": "miota"
     },
 
     "fiat": {
         "US dollar": "usd",
-        "euro": "eur"
+        "euro": "eur",
+        "pound": "gbp"
     }
 }
