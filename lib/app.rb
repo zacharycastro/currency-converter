@@ -1,2 +1,2 @@
 require "./convert.rb"
-puts convert("bitcoin", "euro")
+puts convert("iota", "US dollar")
